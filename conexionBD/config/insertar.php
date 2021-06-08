@@ -3,7 +3,7 @@
 
     if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['edad'])){
 
-        if($_POST['nombre'] !== "" && $_POST['email'] !== "" && $_POST['apellido'] !== "" && $_POST['edad'] !== ""){
+        if($_POST['nombre'] !== "" && $_POST['apellido'] !== "" && $_POST['email'] !== "" && $_POST['edad'] !== ""){
 
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
@@ -12,6 +12,8 @@
 
             $conexion = new Database;
             $confirm = $conexion->insertar($nombre, $apellido, $edad, $email);
+        } else {
+            $confirm = 2; // uno o mas campos estan vacios
         }
 
     }

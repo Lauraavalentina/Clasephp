@@ -4,17 +4,17 @@
 
         public $db; //controladores db
         private static $dns = "mysql:host=localhost;dbname=prueba"; //url de la base de datos
-        private static $user = "root"; //usuario de la conexion
+        private static $user = "root"; //usuario de la conexión
         private static $pass = ""; //contraseña del usuario
-        private static $instance; //instancia de la conexion
+        private static $instance; //instrancia de la conexion
 
-        public function_construct(){
-            $this->$db = new PDO(self::$dns, self::$user, self::$pass);
+        public function __construct(){
+            $this->db = new PDO(self::$dns, self::$user, self::$pass);
         }
 
         public static function getInstance(){
-            if(isset(self::$instance)){
-                $object = _CLASS_;
+            if(!isset(self::$instance)){
+                $object = __CLASS__;
                 self::$instance = new $object;
             }
             return self::$instance;
@@ -24,7 +24,7 @@
 
             try {
                 $conexion = Database::getInstance(); //obtiene la instancia de la clase
-                $query= $conexion->$db->prepare("INSERT INTO persona (nombre, apellido, email, edad) VALUES(:nombre, :apellido, :email, :edad)");
+                $query = $conexion->db->prepare("INSERT INTO persona (nombre, apellido, email, edad) VALUES (:nombre, :apellido, :email, :edad)");
                 $query->execute(
                     array(
                         ':nombre' => $nombre,
@@ -32,14 +32,16 @@
                         ':email' => $email,
                         ':edad' => $edad
                     )
-                 );
+                );
 
                 return 1; //retorna 1 si fue exitoso
 
             } catch(PDOException $error){
-                return 0; //retorna 0 si falla
+                return 0; // retporna o si falla
             }
+
         }
+
 
     }
 
