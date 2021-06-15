@@ -45,6 +45,17 @@
 
         }
 
+        public function validarCorredor($numerocompetidor) {
+            $conexion = Database::getInstance();
+            $query = $conexion->db->prepare("SELECT numerocompetidor FROM usuarios WHERE numerocompetidor=:numerocompetidor");
+            $query->execute(
+                array(
+                    ":numerocompetidor" => $numerocompetidor
+                )
+                );
+            return ($query);
+        }
+
 
     }
 ?>
