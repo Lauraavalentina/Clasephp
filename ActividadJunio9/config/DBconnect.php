@@ -56,6 +56,13 @@
             return ($query);
         }
 
+        public function datosCorredores(){
+            $conexion = Database::getInstance();
+            $query = $conexion->db->prepare("SELECT * from usuarios");
+            $query->execute();
+            return $query;
+        }
+
 
     }
 ?>
